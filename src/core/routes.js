@@ -1,3 +1,5 @@
+// /src/core/routes.js
+
 const express = require('express');
 const config = require('./config');
 const logger = require('./logger');
@@ -16,7 +18,7 @@ const registerRoutes = (app) => {
   const authRoutes = require('../features/auth/authRoutes');
   const subscriptionRoutes = require('../features/subscription/subscriptionRoutes');
   const datasetRoutes = require('../features/datasets/datasetRoutes');
-  // const promptRoutes = require('../features/aiProcessing/promptRoutes');
+  const promptRoutes = require('../features/aiProcessing/promptRoutes'); // Uncommented this line
   // const reportRoutes = require('../features/reporting/reportRoutes');
   // const teamRoutes = require('../features/team/teamRoutes');
   // const accountRoutes = require('../features/account/accountRoutes');
@@ -34,7 +36,7 @@ const registerRoutes = (app) => {
   apiRouter.use('/auth', authRoutes);
   apiRouter.use('/subscription', subscriptionRoutes);
   apiRouter.use('/datasets', datasetRoutes);
-  // apiRouter.use('/prompts', promptRoutes);
+  apiRouter.use('/prompts', promptRoutes); // Uncommented this line
   // apiRouter.use('/reports', reportRoutes);
   // apiRouter.use('/teams', teamRoutes);
   // apiRouter.use('/account', accountRoutes);
