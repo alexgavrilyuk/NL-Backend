@@ -74,6 +74,41 @@ const schemas = {
       'any.required': 'Plan ID is required',
       'string.valid': 'Plan ID must be one of: basic, professional, enterprise'
     })
+  }),
+
+  // Dataset schemas
+  uploadDataset: Joi.object({
+    name: Joi.string().required().messages({
+      'any.required': 'Dataset name is required'
+    }),
+    description: Joi.string().optional().allow(''),
+    metadata: Joi.object({
+      business: Joi.string().optional().allow(''),
+      timeframe: Joi.string().optional().allow(''),
+      context: Joi.string().optional().allow('')
+    }).optional()
+  }),
+
+  updateDataset: Joi.object({
+    name: Joi.string().optional(),
+    description: Joi.string().optional().allow(''),
+    metadata: Joi.object({
+      business: Joi.string().optional().allow(''),
+      timeframe: Joi.string().optional().allow(''),
+      context: Joi.string().optional().allow('')
+    }).optional(),
+    ignored: Joi.boolean().optional()
+  }),
+
+  updateSchema: Joi.object({
+    columns: Joi.array().items(
+      Joi.object({
+        name: Joi.string().required(),
+        type: Joi.string().valid('string', 'number', 'boolean', 'date', 'unknown').required(),
+        description: Joi.string().optional().allow(''),
+        examples: Joi.array().items(Joi.any()).optional()
+      })
+    ).required()
   })
 };
 

@@ -13,10 +13,9 @@ const registerRoutes = (app) => {
   const apiRouter = express.Router();
 
   // Import feature routes
-  // Note: These imports will be added as we create the feature modules
   const authRoutes = require('../features/auth/authRoutes');
-  // const subscriptionRoutes = require('../features/subscription/subscriptionRoutes');
-  // const datasetRoutes = require('../features/datasets/datasetRoutes');
+  const subscriptionRoutes = require('../features/subscription/subscriptionRoutes');
+  const datasetRoutes = require('../features/datasets/datasetRoutes');
   // const promptRoutes = require('../features/aiProcessing/promptRoutes');
   // const reportRoutes = require('../features/reporting/reportRoutes');
   // const teamRoutes = require('../features/team/teamRoutes');
@@ -33,8 +32,8 @@ const registerRoutes = (app) => {
 
   // Register feature routes
   apiRouter.use('/auth', authRoutes);
-  // apiRouter.use('/subscription', subscriptionRoutes);
-  // apiRouter.use('/datasets', datasetRoutes);
+  apiRouter.use('/subscription', subscriptionRoutes);
+  apiRouter.use('/datasets', datasetRoutes);
   // apiRouter.use('/prompts', promptRoutes);
   // apiRouter.use('/reports', reportRoutes);
   // apiRouter.use('/teams', teamRoutes);
