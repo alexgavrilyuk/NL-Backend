@@ -1,4 +1,4 @@
-// Update src/core/routes.js to include report routes
+// src/core/routes.js
 
 const express = require('express');
 const config = require('./config');
@@ -19,8 +19,8 @@ const registerRoutes = (app) => {
   const subscriptionRoutes = require('../features/subscription/subscriptionRoutes');
   const datasetRoutes = require('../features/datasets/datasetRoutes');
   const promptRoutes = require('../features/aiProcessing/promptRoutes');
-  const reportRoutes = require('../features/reporting/reportRoutes'); // Add this line
-  // const teamRoutes = require('../features/team/teamRoutes');
+  const reportRoutes = require('../features/reporting/reportRoutes');
+  const teamRoutes = require('../features/team/teamRoutes');
   // const accountRoutes = require('../features/account/accountRoutes');
 
   // Add a test route
@@ -37,8 +37,8 @@ const registerRoutes = (app) => {
   apiRouter.use('/subscription', subscriptionRoutes);
   apiRouter.use('/datasets', datasetRoutes);
   apiRouter.use('/prompts', promptRoutes);
-  apiRouter.use('/reports', reportRoutes); 
-  // apiRouter.use('/teams', teamRoutes);
+  apiRouter.use('/reports', reportRoutes);
+  apiRouter.use('/teams', teamRoutes);
   // apiRouter.use('/account', accountRoutes);
 
   // Register API router
