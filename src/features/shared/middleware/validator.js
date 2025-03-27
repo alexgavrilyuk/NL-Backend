@@ -1,7 +1,8 @@
-// /src/features/shared/middleware/validator.js
+// src/features/shared/middleware/validator.js
 
 const Joi = require('joi');
 const { AppError } = require('../../../core/errorHandler');
+const reportSchemas = require('../../reporting/reportModels');
 
 /**
  * Create validation middleware using Joi schema
@@ -109,7 +110,13 @@ const schemas = {
         examples: Joi.array().items(Joi.any()).optional()
       })
     ).required()
-  })
+  }),
+
+  // Report schemas - Import from report models
+  createReport: reportSchemas.createReport,
+  updateReport: reportSchemas.updateReport,
+  exportReport: reportSchemas.exportReport,
+  shareReport: reportSchemas.shareReport
 };
 
 module.exports = {
