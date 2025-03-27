@@ -4,6 +4,7 @@ const Joi = require('joi');
 const { AppError } = require('../../../core/errorHandler');
 const reportSchemas = require('../../reporting/reportModels');
 const teamSchemas = require('../../team/teamModels');
+const accountSchemas = require('../../account/accountModels'); // Add this line
 
 /**
  * Create validation middleware using Joi schema
@@ -123,7 +124,13 @@ const schemas = {
   createTeam: teamSchemas.createTeam,
   updateTeam: teamSchemas.updateTeam,
   addMember: teamSchemas.addMember,
-  sendInvitation: teamSchemas.sendInvitation
+  sendInvitation: teamSchemas.sendInvitation,
+
+  // Account schemas - Import from account models
+  updateProfile: accountSchemas.updateProfile,
+  updateSettings: accountSchemas.updateSettings,
+  updatePreferences: accountSchemas.updatePreferences,
+  updateOnboarding: accountSchemas.updateOnboarding
 };
 
 module.exports = {

@@ -311,9 +311,15 @@ async function processPrompt(promptId, userId, promptText, datasetIds, user) {
       status: PROMPT_STATUS.PROCESSING
     });
 
+    // Get the latest user data to ensure we have current preferences and settings
+    const latestUser = await getDocument('users', userId);
+
+    // Use the latest user data if available, otherwise use the provided user object
+    const userWithLatestData = latestUser || user;
+
     // Enhance prompt with context
     logger.info(`Enhancing prompt ${promptId} with context`);
-    const enhancedPrompt = await contextEnricher.enhancePrompt(promptText, datasetIds, user);
+    const enhancedPrompt = await contextEnricher.enhancePrompt(promptText, datasetIds, userWithLatestData);
 
     // Update prompt with enhanced text
     await updateDocument('prompts', promptId, {

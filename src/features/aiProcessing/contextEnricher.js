@@ -56,24 +56,50 @@ const contextEnricher = {
    * @returns {Promise<string>} User context string
    */
   addUserContext: async (user) => {
-    const { preferences = {} } = user;
+    // Use both preferences and settings for more complete context
+    const { preferences = {}, settings = {} } = user;
 
     let context = "USER PREFERENCES:\n";
 
-    if (preferences.currency) {
-      context += `- Currency: ${preferences.currency}\n`;
+    // Add settings information
+    if (settings?.currency) {
+      context += `- Currency: ${settings.currency}\n`;
     }
 
-    if (preferences.dateFormat) {
-      context += `- Date Format: ${preferences.dateFormat}\n`;
+    if (settings?.dateFormat) {
+      context += `- Date Format: ${settings.dateFormat}\n`;
     }
 
-    if (preferences.industry) {
+    if (settings?.language) {
+      context += `- Language: ${settings.language}\n`;
+    }
+
+    // Add business context information
+    if (preferences?.industry) {
       context += `- Industry: ${preferences.industry}\n`;
     }
 
-    if (preferences.businessType) {
+    if (preferences?.businessType) {
       context += `- Business Type: ${preferences.businessType}\n`;
+    }
+
+    // Add AI context preferences
+    if (preferences?.aiContext) {
+      if (preferences.aiContext.financialYear) {
+        context += `- Financial Year: ${preferences.aiContext.financialYear}\n`;
+      }
+
+      if (preferences.aiContext.reportingPeriod) {
+        context += `- Reporting Period: ${preferences.aiContext.reportingPeriod}\n`;
+      }
+
+      if (preferences.aiContext.companySize) {
+        context += `- Company Size: ${preferences.aiContext.companySize}\n`;
+      }
+
+      if (preferences.aiContext.analysisPreference) {
+        context += `- Analysis Preference: ${preferences.aiContext.analysisPreference}\n`;
+      }
     }
 
     return context + "\n";

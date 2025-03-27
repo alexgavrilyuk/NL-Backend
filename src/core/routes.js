@@ -21,7 +21,7 @@ const registerRoutes = (app) => {
   const promptRoutes = require('../features/aiProcessing/promptRoutes');
   const reportRoutes = require('../features/reporting/reportRoutes');
   const teamRoutes = require('../features/team/teamRoutes');
-  // const accountRoutes = require('../features/account/accountRoutes');
+  const accountRoutes = require('../features/account/accountRoutes'); // Add this line
 
   // Add a test route
   apiRouter.get('/test', (req, res) => {
@@ -39,7 +39,7 @@ const registerRoutes = (app) => {
   apiRouter.use('/prompts', promptRoutes);
   apiRouter.use('/reports', reportRoutes);
   apiRouter.use('/teams', teamRoutes);
-  // apiRouter.use('/account', accountRoutes);
+  apiRouter.use('/account', accountRoutes); // Add this line
 
   // Register API router
   app.use(apiPath, apiRouter);
